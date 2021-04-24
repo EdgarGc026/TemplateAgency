@@ -51,27 +51,59 @@ p {
 .toggle {
   width: 60px;
   height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   right: 0;
   z-index: 20;
-  background: var(--red-pigment) url("../img/menu.png");
-  background-size: 30px;
-  background-position: center;
-  background-repeat: no-repeat;
+  border: 3px solid var(--red-pigment);
   cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
-.toggle:hover {
-  transform: scale(0.88);
+.toggle-burger {
+  width: 30px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--red-pigment);
+  box-shadow: 0 2px 4px rgba(255, 101, 47, 0.2);
+  transition: all 0.5s ease-in-out;
 }
 
-.toggle.active {
-  background: var(--red-pigment) url("../img/close.png");
-  background-size: 25px;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
+.toggle-burger::before,
+.toggle-burger::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--red-pigment);
+  box-shadow: 0 2px 4px rgba(255, 101, 47, 0.2);
+  transition: all 0.5s ease-in-out;
+}
+
+.toggle-burger::before {
+  transform: translateY(-12px);
+}
+
+.toggle-burger::after {
+  transform: translateY(12px);
+}
+/* Animation */
+.toggle.active .toggle-burger {
+  transform: translateX(-22px);
+  background: transparent;
+  box-shadow: none;
+}
+
+.toggle.active .toggle-burger::before {
+  transform: rotate(45deg) translate(15px, -15px);
+}
+
+.toggle.active .toggle-burger::after {
+  transform: rotate(-45deg) translate(15px, 15px);
 }
 
 .navigation {
@@ -85,11 +117,17 @@ p {
   left: 100%;
   background: #ffffff;
   z-index: 15;
+  transition: all 0.5s ease-in-out;
 }
 
 .navigation.active {
   left: 0;
+  transition: all 0.5s ease-in-out;
 }
+
+/* .navigation.active {
+  left: 0;
+} */
 
 .navigation ul {
   position: relative;
